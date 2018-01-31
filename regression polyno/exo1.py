@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import Ridge
 from sklearn.preprocessing import PolynomialFeatures #as poly
+from sklearn.metrics import r2_score, median_absolute_error, median_squared_error
 
 
 def plot_data(x,y):
