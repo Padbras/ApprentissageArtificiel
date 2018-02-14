@@ -1,0 +1,16 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="alcohol <= 10.45\nmse = 0.623\nsamples = 1066\nvalue = 5.64"] ;
+1 [label="mse = 0.414\nsamples = 614\nvalue = 5.353"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="volatile acidity <= 0.87\nmse = 0.643\nsamples = 452\nvalue = 6.029"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label="alcohol <= 11.55\nmse = 0.552\nsamples = 432\nvalue = 6.088"] ;
+2 -> 3 ;
+4 [label="mse = 0.512\nsamples = 263\nvalue = 5.905"] ;
+3 -> 4 ;
+5 [label="mse = 0.482\nsamples = 169\nvalue = 6.373"] ;
+3 -> 5 ;
+6 [label="mse = 0.887\nsamples = 20\nvalue = 4.75"] ;
+2 -> 6 ;
+}

@@ -62,7 +62,7 @@ def main():
 	
 	ypred = model.predict(xtest)
 	print("R2 SCORE:")
-	print(r2_score(ypred, ytest))
+	print(r2_score(ytest, ypred))
 	print("MAE:")
 	print(mean_absolute_error(ypred, ytest))
 	print("MSE:")
