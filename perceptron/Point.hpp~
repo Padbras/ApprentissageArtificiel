@@ -1,0 +1,17 @@
+#ifndef POINT_HPP
+#define POINT_HPP
+
+
+
+class Point : {
+	protected:
+		float nbEval;
+		float bestFitness;
+                std::string *s;
+	public:
+		Point();
+	
+
+		
+};
+#endif

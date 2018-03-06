@@ -1,0 +1,26 @@
+#include <Point.hpp>
+#include <time.h>
+
+
+Point::Point()
+{
+  srand(time(NULL));
+
+  x1 = rand()%2;
+  x2 = rand()%2;
+
+  if((x1+x2-1)>0)
+  {
+    etiquette = 1;
+  }
+  else etiquette = 0;
+
+}
+
+void Point::to_string()
+{
+  std::cout << "x1:" << x1 << std::endl;
+  std::cout << "x2:" << x2 << std::endl;
+  std::cout << "etiquette:" << etiquette << std::endl;
+}
+
