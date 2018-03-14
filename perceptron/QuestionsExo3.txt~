@@ -1,0 +1,4 @@
+1) L'évolution du nb d'erreurs. A chaque iteration, le nombre d'erreurs diminue à mesure que le perceptron se rapproche d'une bonne estimation.
+Il finit par être nul et le reste.
+
+2)

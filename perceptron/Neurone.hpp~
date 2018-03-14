@@ -1,0 +1,22 @@
+#ifndef NEURONE_HPP
+#define NEURONE_HPP
+
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+
+class Neurone {
+	protected:
+		double biais;
+		double* poids;
+                int sortie;
+	public:
+		Neurone();
+           
+	
+
+		
+};
+#endif

@@ -1,0 +1,6 @@
+#include "Neurone.hpp"
+
+Neurone::Neurone()
+{
+  biais = 0.01;
+}

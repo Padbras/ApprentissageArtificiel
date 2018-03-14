@@ -7,14 +7,15 @@ Point::Point()
   x1 = (double)rand()/RAND_MAX;
   x2 = (double)rand()/RAND_MAX;
 
-  if((x1+x2-1)>0)
-  {
-    etiquette = 1;
-  }
+
+  if((x1+x2-1)>0/* && x2 > 0.5*/)
+    {
+      etiquette = 1;
+    }
   else
-  {
-    etiquette = 0; 
-  }
+    {
+      etiquette = 0; 
+    }
 
 }
 
@@ -29,13 +30,13 @@ void Point::to_string()
 
 double Point::get_x1()
 {
-return x1;
+  return x1;
 }
 double Point::get_x2()
 {
-return x2;
+  return x2;
 }
 int Point::get_etiquette()
 {
-return etiquette;
+  return etiquette;
 }

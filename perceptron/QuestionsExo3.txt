@@ -1,0 +1,18 @@
+1) L'évolution du nb d'erreurs. A chaque iteration, le nombre d'erreurs diminue à mesure que le perceptron se rapproche d'une bonne estimation.
+Il finit par être nul et le reste.
+
+2) L'augmentation du nombre d'exemple n'impacte que très peu le programme: pour 100 à 500 exemples les erreurs de départ tournent autour d'une cinquantaine puis diminue. A 1000 exemples, on commence à 229 erreurs, puis cela décroit extremement vite et on arrive à peu près au même nombre d'itérations avant d'arriver à 0.
+
+3) L'impact du pas est le suivant: lorsqu'il est élevé, chaque calcul de sortie et mise à jour de neurone est grandement impacté, parcourant ainsi plus largement l'intervalle, cependant cela manque de précision.
+Un pas plus petit permet une précision largement plus grande, cependant le parcours est bien plus laborieux.
+La solution idéale est donc de faire modifier le pas en fonction de la situation. 
+
+4) Si on rajoute une telle condition, on fausse tout les résultats et il est impossible d'atteindre 0 erreurs, puisque l'on est plus dans un cas linéaire (deux conditions = deux problemes pour un seul neurone)
+
+5) On parcoure la base de validation (test) sans mettre le neurone à jour et on calcule le nombre d'erreurs. La base d'apprentissage reste constante (taille 1000)
+On execute le programme plusieurs fois pour avoir un avis plus général:
+
+Pour une base de validation de taille 100: 0
+Pour une base de validation de taille 500: 0 le plus souvent
+Pour une base de validation de taille 10000: 20 en moyenne
+Pour une base de validation de taille 100000: < 500. 

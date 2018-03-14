@@ -4,42 +4,70 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Point.hpp"
+#include "Neurone.hpp"
 
-
-
-int main (int argc, char **argv)
-{
+int main (int argc, char **argv){
+  
+  if (argc != 2){
+    std::cout << "Pas assez d'arguments, entrez sous la forme ./a.out taille_appr taille_test" << std::endl;
+  }
+  
   std::vector<Point> apprentissage;
   std::vector<Point> validation;
-    srand(time(NULL));
+  Neurone neurone(2);
+  int nb_erreurs = 0;
+  int cptIterations = 0;
+  bool stop = false ;
 
-  for(int i = 0; i<10; i++)
-  {
-    Point tmpval;
+  srand(time(NULL));
+
+  // TEMPORAIRE? LECTURE DE FICHIERS? 
+  for(int i = 0; i< atoi(argv[1]); i++){
     Point tmpapr;
-     apprentissage.push_back(tmpapr);
-     apprentissage.push_back(tmpval);
+    apprentissage.push_back(tmpapr);
   }
 
-  /*  for(int i = 0; i < points.size(); i++)
-	 {
-	   points[i].to_string();
-	   }*/
-
-   std::ofstream fichier("apprentissage.txt", std::ios::app);
-   std::ofstream fichier("validation.txt", std::ios::app);
-
-   if(fichier)
-     {
-       for(int i = 0; i < apprentissage.size(); i++)
-	 {
-	   fichier << apprentissage[i].get_x1() << " "  << apprentissage[i].get_x2() << " " << apprentissage[i].get_etiquette()  << std::endl; // Entrée dans le fichier
-	 }
-    
-     }
-
-   fichier.close();
+  for(int j = 0; j< atoi(argv[2]); j++){
+    Point tmpval;
+    validation.push_back(tmpval);
+  }
   
+  while(cptIterations++ != 100 && stop == false)
+    {
+      for(int i = 0; i< apprentissage.size(); i++)
+	{
+	  neurone.calculer_sortie(apprentissage[i]);
 
+	  if(neurone.get_sortie() != apprentissage[i].get_etiquette())
+	    {
+	      neurone.maj_neurone(apprentissage[i]);
+	      nb_erreurs++;
+	    }
+	}
+      std::cout << "NOMBRE D'ERREURS (app): " << nb_erreurs << std::endl;
+      if(nb_erreurs == 0)
+	{
+	  stop = true;
+	  std::cout << "ARRET A L'ITERATION: " << cptIterations << std::endl;
+	 
+	}
+      else
+	{
+	  nb_erreurs = 0;
+	}
+
+    }
+
+  for(int i = 0; i< validation.size(); i++)
+    {
+      neurone.calculer_sortie(validation[i]);
+
+      if(neurone.get_sortie() != validation[i].get_etiquette())
+	{
+	  nb_erreurs++;
+	}
+    }
+  std::cout << "NB ERREURS BASE VALIDATION: " << nb_erreurs << std::endl;
+  
   return 0;
 }

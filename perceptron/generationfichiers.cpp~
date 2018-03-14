@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include "Point.hpp"
 
-
-
 int main (int argc, char **argv)
 {
   std::vector<Point> apprentissage;
@@ -18,7 +16,7 @@ int main (int argc, char **argv)
     Point tmpval;
     Point tmpapr;
      apprentissage.push_back(tmpapr);
-     apprentissage.push_back(tmpval);
+     validation.push_back(tmpval);
   }
 
   /*  for(int i = 0; i < points.size(); i++)
@@ -27,18 +25,30 @@ int main (int argc, char **argv)
 	   }*/
 
    std::ofstream fichier("apprentissage.txt", std::ios::app);
-   std::ofstream fichier("validation.txt", std::ios::app);
+   std::ofstream fichier2("validation.txt", std::ios::app);
 
    if(fichier)
      {
        for(int i = 0; i < apprentissage.size(); i++)
 	 {
 	   fichier << apprentissage[i].get_x1() << " "  << apprentissage[i].get_x2() << " " << apprentissage[i].get_etiquette()  << std::endl; // Entrée dans le fichier
+
+	   
 	 }
     
      }
 
+    if(fichier2)
+     {
+       for(int i = 0; i < validation.size(); i++)
+	 {
+	   fichier2 << validation[i].get_x1() << " "  << validation[i].get_x2() << " " << validation[i].get_etiquette()  << std::endl; // Entrée dans le fichier
+	   
+	 }   
+     }
+
    fichier.close();
+   fichier2.close();
   
 
   return 0;
