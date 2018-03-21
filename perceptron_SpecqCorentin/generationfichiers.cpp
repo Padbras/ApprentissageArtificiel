@@ -43,3 +43,4 @@ int generationfichiers()
   fichier2.close();
   return 0;
 }
+
