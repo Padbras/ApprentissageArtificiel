@@ -89,12 +89,4 @@ def main():
 	plot_correlation(data)
 	
 	
-
-
-
-
-	
-
-	
-
 main()
