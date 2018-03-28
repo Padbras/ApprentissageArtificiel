@@ -54,7 +54,7 @@ def plot_correlation(dataf):
 	#plt.show()
 	plt.figure(figsize=(15,8))
 	sns.set()
-	hm = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values, cmap='RdYlGn')
+	hm = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values, cmap='RdYlGn',vmax=0.5)
 	plt.show()
 	
 def plot_anarchie(data): 
