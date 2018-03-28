@@ -54,16 +54,25 @@ def plot_correlation(dataf):
 	#plt.show()
 	plt.figure(figsize=(15,8))
 	sns.set()
-	hm = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values, cmap='PiYG')
+	hm = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values, cmap='RdYlGn')
 	plt.show()
 	
+def plot_anarchie(data): 
+	newdata = data[data['number_project'] > data['number_project'].mean()]
+	newdata = newdata[data['average_montly_hours'] > data['average_montly_hours'].mean()]
+	newdata = newdata[data['time_spend_company'] > data['time_spend_company'].mean()]
+	newdata = newdata[data['last_evaluation'] > data['last_evaluation'].mean()]
+
+	plot_correlation(newdata)
+
 
 
 
 
 def main():
+
 	label_encode(data)
-	#get_info(data)
+	plot_anarchie(data)
 
 	(train, test) = train_test_split(data, test_size = 0.3333)
 	ytrain = train['left']
@@ -86,7 +95,8 @@ def main():
 	print("Matrice de confusion")
 	print(confmat)
 
-	plot_correlation(data)
+
+	#plot_correlation(data)
 	
 	
 main()
