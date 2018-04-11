@@ -7,6 +7,13 @@ Manchot::Manchot(double esperance, double variance)
   _variance = variance;
 }
 
+
+Manchot::Manchot()
+{
+  _esperance = (double)(rand()%20-10);
+  _variance = (double)(rand()%10);
+}
+
 void Manchot::to_string()
 {
   std::cout << "Esperance : " << _esperance <<std::endl;

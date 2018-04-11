@@ -14,6 +14,7 @@ protected:
 
 public:
   Manchot(double esperance, double variance);
+  Manchot();
   void to_string();
   double tirer_bras();
   

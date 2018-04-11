@@ -1,0 +1,117 @@
+#include <vector>
+#include "Manchot.hpp"
+
+
+double rechercheUCB(int nbIterations, std::vector<Manchot> manchots, double k)
+{
+
+  double nbTirages[manchots.size()];
+  double scoresUCB[manchots.size()];
+  double scoresTotaux[manchots.size()];
+  double test;
+  double sommeGains = 0;
+
+
+  
+  for(int i = 0; i< manchots.size(); i++) // Premier tirage de chaque machine
+    {
+      test = manchots[i].tirer_bras();
+      nbTirages[i]++;
+      scoresTotaux[i] += test; // Scores de gains
+      sommeGains += test;
+    }
+
+  for(int i = 0; i< manchots.size(); i++) 
+    {
+      scoresUCB[i] = (scoresTotaux[i]/nbTirages[i]) + k * (sqrt(log(manchots.size()/nbTirages[i]))); // MàJ tableau UCB
+    }
+
+  for(int i = 0; i<nbIterations-manchots.size(); i++) // Boucle principale
+    {
+          
+      int tmpIndice = 0;
+      double tmp = 0;
+      for(int j = 0; j< manchots.size(); j++) 
+	{
+	  if(scoresUCB[j] > tmpIndice)
+	    tmpIndice = j; 
+	}
+
+      tmp = manchots[tmpIndice].tirer_bras();
+      sommeGains += tmp;
+      scoresTotaux[tmpIndice] = scoresTotaux[tmpIndice]+tmp;
+      nbTirages[tmpIndice]++;
+
+
+
+      for(int h = 0; h< manchots.size(); h++) 
+	{
+	  scoresUCB[h] = scoresTotaux[h] + k * (sqrt(log((manchots.size()+h)/nbTirages[i]))); // MàJ tableau UCB
+	}
+
+    }
+
+    std::cout << "Gains totaux (UCB):" << sommeGains << std::endl;
+
+}
+
+
+double rechercheAleatoire(int nbIterations, std::vector<Manchot> manchots)
+{
+  double sommeGains = 0;
+  for(int i = 0; i < nbIterations; i++)
+    {
+      sommeGains += manchots[rand()%manchots.size()].tirer_bras();
+    }
+  std::cout << "Gains totaux (aleatoire):" << sommeGains << std::endl;
+}
+
+double rechercheGloutonne(int nbIterations, std::vector<Manchot> manchots)
+{
+  double sommeGains = 0;
+  double bestResult = -10000;
+  int bestRank = -1;
+  double tmpResult;
+  for(int i = 0; i< manchots.size(); i++)
+    {
+      tmpResult = manchots[i].tirer_bras();
+	if(tmpResult > bestResult)
+	  {
+	    bestResult = tmpResult;
+	    bestRank = i ;
+	  }
+      sommeGains += tmpResult;
+    }
+
+  for(int j = manchots.size(); j< nbIterations; j++)
+    {
+      sommeGains += manchots[bestRank].tirer_bras();
+    }
+
+  std::cout << "Gains totaux (glouton):" << sommeGains << std::endl;
+}
+
+int main (int argc, char **argv)
+{
+
+  if(argc!=2)
+    {
+      std::cout << "Pas assez d'arguments, entrez sous la forme ./a.out nb_manchots" << std::endl;
+    }
+  std::vector<Manchot> manchots;
+  srand(time(NULL));
+
+  for(int i = 0; i< atoi(argv[1]); i++){
+    Manchot tmp_manchots;
+    manchots.push_back(tmp_manchots);
+  }
+
+
+  rechercheAleatoire(1000, manchots);
+  rechercheGloutonne(1000, manchots);
+  rechercheUCB(1000, manchots, 3);
+
+  
+ 
+  return 0;
+}

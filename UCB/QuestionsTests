@@ -1,0 +1,34 @@
+SPECQ Corentin 
+
+6) TESTS
+
+Lorsque le k est très faible, on obtiens un cas de figure correspondant à une exploitation privilégiée. Les résultats sont meilleurs que la stratégie gloutonne en général. Lorsqu'on étudie la répartition des itérations sur les différents manchots, on obtiens par exemple: 
+
+Gains totaux (aleatoire):-181982
+Gains totaux (glouton):900756
+Gains totaux (UCB):1.3479e+06
+
+Répartition des itérations
+1 1 1 1 1 1 1 1 149989 3 
+
+(ici le k=2)
+
+Quand on prend un k très élevé, par exemple 200000: 
+
+Gains totaux (aleatoire):-168052
+Gains totaux (glouton):1.35255e+06
+Gains totaux (UCB):-165173
+
+Répartition des itérations
+14979 14969 14963 15053 14990 15001 15032 15022 14990 15001 
+
+On remarque que l'algorithme UCB est bien moins efficace que le glouton puisqu'on essaie autant de fois chaque manchot, meme les moins efficaces (exploration maximale).
+
+
+4) QUESTIONS
+
+1) Le K est le paramètre qui gère le dilemme exploration/exploitation. Ainsi, avec un K faible, on obtiens une exploitation élevée pour une exploration faible, et inversement pour un K fort. 
+
+2) La stratégie gloutonne est la meilleure pour un K élevé. On peut conjecturer qu'elle est meilleure lorsqu'un manchot est largement meilleur que les autres et le reste, puisque la stratégie gloutonne va l'utiliser pour chaque itération sans perdre de temps avec les autres. Elle est également plus efficace avec un nombre faibles de manchots. 
+
+3) La stratégie UCB est la meilleure dans le cas d'un K faible, dans le cas où les manchots sont plus équitables en termes d'efficacité. Elle est également plus efficace avec un grand nombre de manchots. 
